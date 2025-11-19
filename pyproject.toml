@@ -1,0 +1,12 @@
+[project]
+name = "speach-to-text"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "ffmpeg>=1.4",
+    "openai-whisper>=20250625",
+    "pandas>=2.3.3",
+    "torch>=2.9.1",
+]
