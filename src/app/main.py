@@ -4,6 +4,5 @@ from convertor.service.convertor_service import ConvertorService
 app = Flask(__name__)
 @app.route("/")
 def hello_world():
-    name = request.args.get('name')
-    text = ConvertorService.create_text(name)
+    text = ConvertorService.create_text()
     return f"<h1>{text}</h1>"

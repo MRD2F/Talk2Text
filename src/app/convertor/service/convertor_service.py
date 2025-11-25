@@ -1,24 +1,18 @@
-#import whisper
+from convertor.service.transcription import Transcription
+
 
 class ConvertorService:
-    quality = "tiny"
-
-    # # Load the Whisper model (choose: tiny, base, small, medium, large)
-    # model = whisper.load_model(quality)    
-
-
-    # print("Transcribing... this may take a few minutes for a 1h file.")
-
-    # result = model.transcribe(audio_path)
-
-    # # Print text
-    # print(result["text"])
-
-    # # Save transcript to file
-    # with open(f"{output_file_name}.txt", "w", encoding="utf-8") as f:
-    #     f.write(result["text"])
+    
     @classmethod
-    def create_text(cls, nome):
-        pippo = "Ciao" + cls.quality
+    def create_text(cls):
+        #data_dir = "data"
+        input_file_name = "./convertor/service/data/inputs/5846093734223028963.ogg"
+        #output_file_name = "./data/outputs/5846093734223028963"
+        model_id = "tiny"
+        show_text = True
+        text_preview_size = 10
 
-        return f"{pippo} {nome}"
+        transcription = Transcription(model_id=model_id, input_file_name=input_file_name, 
+                                  show_text=show_text,text_preview_size=text_preview_size)
+
+        return transcription.get_transcription()
