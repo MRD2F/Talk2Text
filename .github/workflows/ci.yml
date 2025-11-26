@@ -45,4 +45,4 @@ jobs:
       - name: Lint with ruff
         run: uv run ruff check --output-format=github . --exclude tests
       - name: Check formatting with black
-        run: black --check . --diff
+        run: uv run black --check . --diff
