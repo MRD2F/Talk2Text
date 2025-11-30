@@ -56,12 +56,17 @@ This automatically:
 
 ------------------------------------------------------------------------
 
-## 🏃 3. Running the Transcription Script
+## 🏃 3. Running the Transcription Script and Flask API
 
 Run from the **root directory**:
 
 ``` bash
-uv run src/app/convertor/service/transcription_service.py   
+PYTHONPATH=src
+uv run -m src.app.convertor.service.transcription
+```
+
+``` bash
+uv run flask --app src.app.main run
 ```
 
 ### Important
