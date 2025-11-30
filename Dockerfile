@@ -8,6 +8,9 @@ ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 #additionally run export UV_HTTP_TIMEOUT=120 on local shell
 ENV UV_HTTP_TIMEOUT=300
+ENV PYTHONPATH="/app/src"
+
+
 
 # -------------------------------------------------------
 # 2. Install system dependencies
@@ -52,4 +55,10 @@ EXPOSE 8000
 
 # More generic entrypoint:
 #CMD ["uv", "run", "src/myproject/app.py"]
-CMD ["uv", "run", "src/app/convertor/service/transcription.py"]
+#CMD ["uv", "run", "src/app/convertor/service/transcription.py"]
+
+#FROM src/app folder uv run flask --app main run
+#CMD ["uv", "run", "flask", "--app", "main", "run"] 
+
+#CORRECT from root directory
+CMD ["uv", "run", "flask", "--app", "src.app.main", "run"] 
