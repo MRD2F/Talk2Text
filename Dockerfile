@@ -45,20 +45,11 @@ COPY src/ ./src/
 # -------------------------------------------------------
 # 7. Expose API port and run app
 # -------------------------------------------------------
-EXPOSE 8000
-
-# For Flask:
-# CMD ["uv", "run", "src/myproject/app.py"]
-
-# For FastAPI (example):
-# CMD ["uv", "run", "fastapi", "run", "src/myproject/app.py"]
-
-# More generic entrypoint:
-#CMD ["uv", "run", "src/myproject/app.py"]
-#CMD ["uv", "run", "src/app/convertor/service/transcription.py"]
-
-#FROM src/app folder uv run flask --app main run
-#CMD ["uv", "run", "flask", "--app", "main", "run"] 
+#It does not open the port or publish anything to your host.
+#Indicates to other developers that the container listens on port 8000.
+#Has no effect unless someone uses --expose or configures port mapping.
+#Flask app’s default port is 5000,
+EXPOSE 5000
 
 #CORRECT from root directory
-CMD ["uv", "run", "flask", "--app", "src.app.main", "run"] 
+CMD ["uv", "run", "flask", "--app", "src.app.main", "run", "--host=0.0.0.0", "--port=5000"] 
