@@ -56,12 +56,17 @@ This automatically:
 
 ------------------------------------------------------------------------
 
-## 🏃 3. Running the Transcription Script
+## 🏃 3. Running the Transcription Script and Flask API
 
 Run from the **root directory**:
 
 ``` bash
-uv run src/app/convertor/service/transcription_service.py   
+source .env
+uv run -m src.app.convertor.service.transcription
+```
+
+``` bash
+uv run flask --app src.app.main run --debug
 ```
 
 ### Important
@@ -69,6 +74,12 @@ uv run src/app/convertor/service/transcription_service.py
 Running from the project root ensures that relative paths like
 `data/inputs/...` resolve correctly.
 
+The .env file contains the python path (PYTHONPATH):
+
+``` bash
+export PYTHONPATH=$(pwd)/src
+```
+ Which ensures the project root is in the PYTHONPATH, so  python can find the project modules. For this project "src"  should be treated as the root of the package.
 
 ## 🧪 5. Running Tests (if applicable)
 
@@ -95,6 +106,43 @@ uv sync
 
 ------------------------------------------------------------------------
 
+## 🚀   Docker
+
+
+1. Create an image from the Dockerfile
+
+``` bash
+docker build -t myflaskapp .
+```
+2. Create, start and attach a Docker Container
+
+``` bash
+docker run -t myflaskapp .
+```
+
+3. To access Flask from localhost
+
+Flask must listen on all interfaces, not just localhost, or it will be unreachable from your machine. The local cmd
+
+``` bash
+CMD ["uv", "run", "flask", "--app", "src.app.main", "run"] ❌ Required change: Add host
+CMD ["uv", "run", "flask", "--app", "src.app.main", "run", "--host=0.0.0.0", "--port=5000"]
+
+```
+
+Then run the container, and access Flask using Port Binding
+``` bash
+docker run --rm -p <host_port>:<conteiner_port> myflaskapp
+
+docker run --rm -p 5001:5000 myflaskapp
+``` 
+
+Now in the local browser we can access our running flask application at:
+
+[text](http://localhost:5004/)
+
+------------------------------------------------------------------------
+
 ## ❗ Troubleshooting
 
 ### **FileNotFoundError for audio inputs**
@@ -113,5 +161,3 @@ Incorrect:
 cd src/app/convertor/service/
 uv run transcription_service.py   # ❌ breaks relative paths
 ```
-
-------------------------------------------------------------------------

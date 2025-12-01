@@ -1,5 +1,5 @@
 from flask import Flask
-from convertor.service.convertor_service import ConvertorService
+from app.convertor.service.convertor_service import ConvertorService
 
 app = Flask(__name__)
 

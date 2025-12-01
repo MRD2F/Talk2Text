@@ -98,6 +98,7 @@ class Transcription:
 
         result = model.transcribe(
             self.input_file_name,
+            fp16=False
         )
 
         if self.show_text:
