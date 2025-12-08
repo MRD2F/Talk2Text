@@ -3,7 +3,7 @@ name = "speach-to-text"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = "==3.12.0"
 dependencies = [
     "black>=25.11.0",
     "ffmpeg>=1.4",

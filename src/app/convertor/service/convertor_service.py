@@ -6,7 +6,9 @@ class ConvertorService:
     @classmethod
     def create_text(cls):
         # data_dir = "data"
-        input_file_name = "./src/app/convertor/service/data/inputs/5846093734223028963.ogg"
+        input_file_name = (
+            "./src/app/convertor/service/data/inputs/5846093734223028963.ogg"
+        )
         # input_file_name = "./convertor/service/data/inputs/5846093734223028963.ogg"
         # output_file_name = "./data/outputs/5846093734223028963"
         model_id = "tiny"

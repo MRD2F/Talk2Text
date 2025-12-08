@@ -1,0 +1,16 @@
+services:
+  flask:
+    container_name: talk2text
+    restart: unless-stopped
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./src:/app/src:Z # aggiunta :Z per SELinux
+    working_dir: /app
+    environment:
+      FLASK_APP: main # se il file principale è src/main.py
+      FLASK_ENV: development
+      FLASK_RUN_HOST: 0.0.0.0
+      FLASK_RUN_PORT: 5000
+    command: tail -f /dev/null
