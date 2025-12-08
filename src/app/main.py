@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
+from app.convertor.service.convertor_service import ConvertorService
 
-# from app.convertor.service.convertor_service import ConvertorService
 
 app = Flask(__name__)
 
@@ -21,7 +21,19 @@ def upload_file():
     if file.filename == "":
         return "No selected file"
 
+    # Instantiate service
+    convertor_service = ConvertorService(
+        model_id="tiny",
+        input_file_name=file.filename,  #  PATH to the saved file
+        show_text=True,
+        text_preview_size=100,
+    )
+
+    text = convertor_service.create_text()
+
+    return f"<h1>{text}</h1>"
+
     # Leggi il contenuto del file in memoria
-    data = file.read()  # bytes
-    # oppure se è un testo: file_content = file.read().decode('utf-8')
-    return f"Dimensione del file: {len(data)} byte"
+    # data = file.read()  # bytes
+    # # oppure se è un testo: file_content = file.read().decode('utf-8')
+    # return f"Dimensione del file: {len(data)} byte"
