@@ -161,3 +161,13 @@ Incorrect:
 cd src/app/convertor/service/
 uv run transcription_service.py   # ❌ breaks relative paths
 ```
+
+------------------------------------------------------------------------
+
+## 🚀   Run with docker-compose
+
+``` bash
+1 - docker-compose up --force-recreate --build -d (only first time)
+2-  docker exec -it talk2text  bash
+3 - uv run flask --app src.app.main run --debug
+```

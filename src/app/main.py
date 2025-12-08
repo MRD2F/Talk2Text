@@ -1,10 +1,27 @@
-from flask import Flask
-from app.convertor.service.convertor_service import ConvertorService
+from flask import Flask, render_template, request
+
+# from app.convertor.service.convertor_service import ConvertorService
 
 app = Flask(__name__)
 
 
 @app.route("/")
-def hello_world():
-    text = ConvertorService.create_text()
-    return f"<h1>{text}</h1>"
+def main():
+    # text = ConvertorService.create_text()
+    return render_template("main.html", person="enrico")
+
+
+@app.route("/upload", methods=["POST"])
+def upload_file():
+    if "file" not in request.files:
+        return "No file part"
+
+    file = request.files["file"]
+
+    if file.filename == "":
+        return "No selected file"
+
+    # Leggi il contenuto del file in memoria
+    file_content = file.read()  # bytes
+    # oppure se è un testo: file_content = file.read().decode('utf-8')
+    return f"Dimensione del file: {len(data)} byte"
