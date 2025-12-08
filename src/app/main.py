@@ -22,6 +22,6 @@ def upload_file():
         return "No selected file"
 
     # Leggi il contenuto del file in memoria
-    file_content = file.read()  # bytes
+    data = file.read()  # bytes
     # oppure se è un testo: file_content = file.read().decode('utf-8')
     return f"Dimensione del file: {len(data)} byte"
