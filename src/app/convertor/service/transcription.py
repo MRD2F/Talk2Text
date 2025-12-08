@@ -96,10 +96,7 @@ class Transcription:
         # _, probs = model.detect_language(mel)
         # print(f"Detected language: {max(probs, key=probs.get)}")
 
-        result = model.transcribe(
-            self.input_file_name,
-            fp16=False
-        )
+        result = model.transcribe(self.input_file_name, fp16=False)
 
         if self.show_text:
             if self.text_preview_size:
