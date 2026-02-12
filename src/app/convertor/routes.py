@@ -9,8 +9,9 @@ api = Api(upload_bp)
 
 class FileUploadResource(Resource):
     def post(self):
-        file = FileService("mp3", 1000)
-        return file.convert(request.files.get("file"))
+        allowed_extensions = ["mp3", "wav", "ogg"]
+        file_service = FileService(allowed_extensions, 100)
+        return file_service.convert(request.files.get("file"))
 
 
 api.add_resource(FileUploadResource, "/upload/")
