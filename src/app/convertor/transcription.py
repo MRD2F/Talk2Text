@@ -22,7 +22,7 @@ class Transcription:
 
     def __init__(
         self,
-        file_storage,  # ora riceve il file dall'API
+        file_storage,
         model_id="tiny",
         show_text=False,
         language="english",
