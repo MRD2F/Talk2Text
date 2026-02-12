@@ -26,12 +26,17 @@ class Transcription:
         model_id="tiny",
         show_text=False,
         language="english",
+        test_mode=False,
+        text_preview_size=None,
+        output_file_name="",
     ):
         self.file_storage = file_storage
         self.model_id = model_id
         self.show_text = show_text
         self.language = language
-
+        self.test_mode = test_mode
+        self.text_preview_size = text_preview_size
+        self.output_file_name = output_file_name
         self._check_file_extension()
         self._check_whisper_model_id()
 
@@ -49,6 +54,11 @@ class Transcription:
     def _get_model(self):
         return whisper.load_model(self.model_id)
 
+    def _save_transcription(self, text, output_file_name=""):
+        file_name = self.output_file_name if not output_file_name else output_file_name
+        with open(f"{file_name}.txt", "w", encoding="utf-8") as f:
+            f.write(text)
+
     def get_transcription(self):
         model = self._get_model()
 
@@ -61,7 +71,12 @@ class Transcription:
             result = model.transcribe(temp_path, fp16=False)
 
             if self.show_text:
-                print(result["text"])
+                if self.text_preview_size:
+                    print(result["text"][: self.text_preview_size])
+                else:
+                    print(result["text"])
+            if self.test_mode:
+                self._save_transcription(result["text"])
 
             return result["text"]
 
