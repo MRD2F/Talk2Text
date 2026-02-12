@@ -20,9 +20,16 @@ def test_transcription_text():
     show_text = True
     text_preview_size = 10
 
+    from werkzeug.datastructures import FileStorage
+
+    with open(input_file_name, "rb") as f:
+        file_storage = FileStorage(
+            stream=f, filename="test.mp3", content_type="audio/mpeg"
+        )
+
     transcription_service = Transcription(
         model_id=model_id,
-        file_storage=input_file_name,
+        file_storage=file_storage,
         show_text=show_text,
         output_file_name=output_file_name,
         text_preview_size=text_preview_size,
