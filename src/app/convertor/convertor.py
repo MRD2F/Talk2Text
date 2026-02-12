@@ -20,11 +20,11 @@ class Convertor:
 
 
 if __name__ == "__main__":
-    convertor_service = ConvertorService(
+    convertor = Convertor(
         model_id="tiny",
         input_file_name="./src/app/convertor/service/data/inputs/5846093734223028963.ogg",
         show_text=True,
         text_preview_size=100,
     )
 
-    text = convertor_service.create_text()
+    text = convertor.create_text()

@@ -1,12 +1,13 @@
-from convertor.routes import upload_bp
 from flask import Flask, render_template
+
+from app.convertor.routes import upload_bp
 
 app = Flask(__name__)
 
 
 @app.route("/")
 def main():
-    return "Talk2Text"
+    return render_template("main.html")
 
 
 # Registrazione dei Blueprint

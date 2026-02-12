@@ -9,6 +9,7 @@ dependencies = [
     "ffmpeg>=1.4",
     "flake8>=7.3.0",
     "flask>=3.1.2",
+    "flask-restful>=0.3.10",
     "openai-whisper>=20250625",
     "pandas>=2.3.3",
     "pytest==8.4.2",
