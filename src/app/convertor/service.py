@@ -48,8 +48,8 @@ class FileService:
             return error
 
         try:
-            service = Transcription(file_storage=file)
-            text = service.get_transcription()
+            transcription = Transcription(file_storage=file)
+            text = transcription.get_transcription()
             return {
                 "message": "File converted successfully",
                 "transcription": text,
