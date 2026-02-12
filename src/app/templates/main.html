@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="it">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Talk2Text - API Documentation</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <style>
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+                background-color: #f4f6f9;
+                margin: 0;
+                padding: 0;
+            }
+
+            header {
+                background-color: #1f2937;
+                color: #ffffff;
+                padding: 20px 40px;
+            }
+
+            header h1 {
+                margin: 0;
+                font-size: 28px;
+            }
+
+            header p {
+                margin: 5px 0 0 0;
+                font-size: 14px;
+                color: #d1d5db;
+            }
+
+            main {
+                padding: 40px;
+                max-width: 900px;
+                margin: auto;
+            }
+
+            .api-section {
+                background: #ffffff;
+                border-radius: 8px;
+                padding: 20px;
+                margin-bottom: 20px;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            }
+
+            .api-method {
+                font-weight: bold;
+                padding: 4px 8px;
+                border-radius: 4px;
+                font-size: 12px;
+                margin-right: 10px;
+                color: white;
+            }
+
+            .GET {
+                background-color: #16a34a;
+            }
+            .POST {
+                background-color: #ca8a04;
+            }
+            .PUT {
+                background-color: #2563eb;
+            }
+            .DELETE {
+                background-color: #dc2626;
+            }
+
+            .endpoint {
+                font-family: monospace;
+                font-size: 14px;
+            }
+
+            footer {
+                text-align: center;
+                padding: 20px;
+                font-size: 12px;
+                color: #6b7280;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>Talk2Text</h1>
+            <p>Backend API - Speech to Text Service</p>
+        </header>
+
+        <main>
+            <div class="api-section">
+                <div>
+                    <span class="api-method POST">POST</span>
+                    <span class="endpoint">/upload-file</span>
+                </div>
+                <p>
+                    Carica un file audio e restituisce la trascrizione testuale.
+                </p>
+            </div>
+        </main>
+
+        <footer>© 2026 Talk2Text - Backend Service</footer>
+    </body>
+</html>
