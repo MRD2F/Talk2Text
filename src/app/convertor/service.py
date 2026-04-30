@@ -4,10 +4,12 @@ from app.convertor.transcription import Transcription
 
 
 class FileService:
-    def __init__(self, allowed_extensions, max_size_mb):
+    def __init__(self, allowed_extensions, max_size_mb, model, language):
         self.allowed_extensions = allowed_extensions
         self.max_size_mb = max_size_mb
         self.max_size_bytes = max_size_mb * 1024 * 1024
+        self.model = model
+        self.language = language
 
     def _allowed_extension(self, filename):
         ext = os.path.splitext(filename)[1].lower().replace(".", "")
@@ -48,7 +50,9 @@ class FileService:
             return error
 
         try:
-            transcription = Transcription(file_storage=file)
+            transcription = Transcription(
+                file_storage=file, model_id=self.model, language=self.language
+            )
             text = transcription.get_transcription()
             return {
                 "message": "File converted successfully",

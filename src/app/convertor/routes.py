@@ -10,7 +10,16 @@ api = Api(upload_bp)
 class FileUploadResource(Resource):
     def post(self):
         allowed_extensions = ["mp3", "wav", "ogg"]
-        file_service = FileService(allowed_extensions, 100)
+
+        language = request.form.get("language")
+        model = request.form.get("model")
+        file_service = FileService(
+            allowed_extensions=allowed_extensions,
+            max_size_mb=1000,
+            language=language,
+            model=model,
+        )
+
         return file_service.convert(request.files.get("file"))
 
 

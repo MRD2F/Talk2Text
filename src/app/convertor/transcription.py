@@ -36,20 +36,32 @@ class Transcription:
         self.language = language
         self.test_mode = test_mode
         self.text_preview_size = text_preview_size
+
         self.output_file_name = output_file_name
-        self._check_file_extension()
-        self._check_whisper_model_id()
+
+        print(self.model_id, self.language)
+
+        check, ext = self._check_file_extension()
+        if not check:
+            raise ValueError(f"Invalid file format: .{ext}")
+
+        if not self._check_whisper_model_id():
+            raise ValueError(f"Invalid model ID selection: {self.model_id}")
 
     def _check_file_extension(self):
         filename = self.file_storage.filename
         ext = filename.rsplit(".", 1)[-1].lower()
 
-        if ext not in self.whisper_allowed_extensions:
-            raise ValueError(f"Invalid file format: .{ext}")
+        if ext in self.whisper_allowed_extensions:
+            return True, ext
+        else:
+            return False, ext
 
     def _check_whisper_model_id(self):
-        if self.model_id not in self.whisper_model_ids:
-            raise ValueError(f"Invalid model ID selection: {self.model_id}")
+        if self.model_id in self.whisper_model_ids:
+            return True
+        else:
+            return False
 
     def _get_model(self):
         return whisper.load_model(self.model_id)
