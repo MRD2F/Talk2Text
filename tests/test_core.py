@@ -5,31 +5,39 @@ def test_imports():
 
 
 def test_imports_modules():
-    from src.app.convertor.service.transcription import Transcription
+    from src.app.convertor.transcription import Transcription
 
     assert True
 
 
 def test_transcription_text():
-    from src.app.convertor.service.transcription import Transcription
+    from src.app.convertor.transcription import Transcription
 
-    data_dir = "data"
-    input_file_name = f"{data_dir}/inputs/5846093734223028963.ogg"
-    output_file_name = f"{data_dir}/outputs/5846093734223028963"
+    data_dir = "./src/app/convertor/data"
+    input_file_name = f"./{data_dir}/test.ogg"
+    output_file_name = f"{data_dir}/test.txt"
     model_id = "tiny"
     show_text = True
     text_preview_size = 10
 
+    from werkzeug.datastructures import FileStorage
+
+    with open(input_file_name, "rb") as f:
+        file_storage = FileStorage(
+            stream=f, filename="test.ogg", content_type="audio/ogg"
+        )
+
     transcription_service = Transcription(
         model_id=model_id,
-        input_file_name=input_file_name,
+        file_storage=file_storage,
         show_text=show_text,
         output_file_name=output_file_name,
         text_preview_size=text_preview_size,
+        test_mode=True,
     )
 
     assert transcription_service._get_model() is not None
-    assert transcription_service._check_file_extension() is True
+    assert transcription_service._check_file_extension()[0] is True
     assert transcription_service._check_whisper_model_id() is True
 
 
